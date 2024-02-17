@@ -1,5 +1,4 @@
 import * as React from "react";
-import {Image} from "@chakra-ui/react";
 
 import {
   Card,
@@ -11,6 +10,21 @@ import {
 
 
 export function MealCard({name, description, school, meetTime, studentIds, imgSrc, capacity, price}: any)  {
+
+  const descriptionItems = [
+    {
+      logoSrc: "/location.png",
+      attribute: school,
+    },
+    {
+      logoSrc: "/clock.png",
+      attribute: meetTime,
+    },
+    {
+      logoSrc: "/dollar.png",
+      attribute: price,
+    },
+  ];
   return (
     <Card className="rounded-tl-2xl rounded-tr-2xl overflow-hidden h-4/5 relative">
       <img
@@ -21,21 +35,14 @@ export function MealCard({name, description, school, meetTime, studentIds, imgSr
       <CardTitle className="px-4 pt-4">{name}</CardTitle>
       <CardDescription className="px-4 py-2">{description}</CardDescription>
       <div className="px-4 py-2">
-        <p className="flex gap-2">
-          <Image src="/location.png" h={20} w={20} />
-          {school}
-        </p>
-        <p className="flex gap-2">
-          {" "}
-          <Image src="/clock.png" h={20} w={20} />
-          {meetTime}
-        </p>
-
-        <p className="flex gap-2">
-          {" "}
-          <Image src="/dollar.png" h={20} w={20} />
-          {price}
-        </p>
+        {descriptionItems.map((item, index) => {
+          return (
+            <p className="flex gap-2 items-center" key={index}>
+              <img src={item.logoSrc} className="h-4 w-4" />
+              {item.attribute}
+            </p>
+          );
+        })}
       </div>
 
       <p className="absolute right-2 bottom-2 text-xs"> Sign-ups: 2 / 3</p>
