@@ -1,6 +1,19 @@
 import { MealCard } from "../components/mealCard";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
-export default function StudentsView() {
+
+
+export const metadata = {
+  title: "Dashboard | Auntie",
+};
+
+export default async function StudentsView() {
+  const session = await getServerSession();
+
+  if (!session || !session.user) {
+    redirect("/login");
+  }
   const meals = [
     {
       name: "Porota Manksho",

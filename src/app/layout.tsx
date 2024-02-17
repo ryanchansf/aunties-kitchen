@@ -17,9 +17,11 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
   return (
+    <html lang="en">
       <NextAuthProvider>
-      <Navbar />
-      <body className={inter.className}>{children}</body>
+        <Navbar />
+        <body className={inter.className}>{children}</body>
       </NextAuthProvider>
+    </html>
   );
 }
