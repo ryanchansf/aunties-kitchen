@@ -1,34 +1,37 @@
+"use client";
+
 import Link from "next/link";
 import React from "react";
 import UserAccountNav from "./UserAccountNav";
 // import { getAuthSession } from "@/lib/nextauth";
 import SignInButton from "./SignInButton";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
-const Navbar = async () => {
-  // const session = await getAuthSession();
+const Navbar = () => {
+    const { status, data: session } = useSession();
 
-  // const userId = session?.user?.id;
-
-  return (
-    <div className="fixed inset-x-0 top-0  bg-white dark:bg-gray-950 z-[10] h-fit border-b border-zinc-300  py-3 md:pb-3 pb-7">
-      <div className="flex items-center justify-between h-full gap-2 md:px-8 px-3 mx-auto max-w-7xl pt-2 md:pt-0">
-        {/* Logo */}
-        <Link href={"/"} className="flex items-center flex-row ">
-          {/* <Image
+    return (
+        <div className="fixed inset-x-0 top-0  bg-white dark:bg-gray-950 z-[10] h-fit border-b border-zinc-300  py-3 md:pb-3 pb-7">
+            <div className="flex items-center justify-between h-full gap-2 md:px-8 px-3 mx-auto max-w-7xl pt-2 md:pt-0">
+                {/* Logo */}
+                <Link href={"/"} className="flex items-center flex-row ">
+                    {/* <Image
             className=" w-[1.5rem] md:w-[2rem] hover:-translate-y-[2px] mr-1 md:mr-2 transition-all"
             src={"/avocado.png"}
             height={700}
             width={700}
             alt=""
           /> */}
-          <p className="font-outfit ml-1 md:text-3xl text-2xl transition-all hover:-translate-y-[2px] md:block dark:text-white1">
-            <span className="md:text-3xl text-[18px]">Aunties Meal</span>
-          </p>
-        </Link>
-        <UserAccountNav />
+                    <p className="font-outfit ml-1 md:text-3xl text-2xl transition-all hover:-translate-y-[2px] md:block dark:text-white1">
+                        <span className="md:text-3xl text-[18px]">
+                            Aunties Meal
+                        </span>
+                    </p>
+                </Link>
+                {session?.user ? <UserAccountNav /> : <></>}
 
-        {/* <div className="flex items-center ">
+                {/* <div className="flex items-center ">
                     {session?.user ? (
                         <>
                             <UserAccountNav user={session.user} />
@@ -51,9 +54,9 @@ const Navbar = async () => {
                         </div>
                     )}
                 </div> */}
-      </div>
-    </div>
-  );
+            </div>
+        </div>
+    );
 };
 
 export default Navbar;
