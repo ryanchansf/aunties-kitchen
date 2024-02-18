@@ -11,10 +11,15 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import { Label } from "@/components/ui/label";
 
-export default function AddMeal(){
+type AddMealProps = {
+    reload: boolean;
+    setReload: Dispatch<SetStateAction<boolean>>;
+  };
+
+export default function AddMeal({ reload, setReload }: AddMealProps){
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [meetTime, setMeetTime] = useState('')
@@ -47,6 +52,7 @@ export default function AddMeal(){
             throw new Error('Failed to create meal');
         }
         // Handle success response if needed
+        setReload(!reload);
     } catch (error) {
         console.error('Error creating meal:', error);
         // Handle error if needed

@@ -23,8 +23,11 @@ import { MealCard } from "../components/mealCardAuntie";
 
 type Props = {
     session: any;
+    reload: boolean;
+    setReload: React.Dispatch<React.SetStateAction<boolean>>;
 };
-const AuntieMealsList = (props: Props) => {
+
+const AuntieMealsList = ({ session, reload, setReload }: Props) => {
     const [meals, setMeals] = useState<any[]>([]); // Using 'any' type for meals
 
     useEffect(() => {
@@ -34,6 +37,13 @@ const AuntieMealsList = (props: Props) => {
             .then(() => console.log(meals))
             .catch((error) => console.error("Failed to fetch meals:", error));
     }, []); // Empty dependency array to run the effect only once
+
+    useEffect(() => {
+        fetchMeals()
+            .then((fetchedMeals) => setMeals(fetchedMeals.meals))
+            .then(() => console.log(meals))
+            .catch((error) => console.error("Failed to fetch meals:", error));
+    }, [reload]);
 
     const fetchMeals = async () => {
         try {
@@ -83,6 +93,8 @@ const AuntieMealsList = (props: Props) => {
                         count={meal.count}
                         key={id}
                         mealId={meal._id}
+                        setReload={setReload}
+                        reload={reload}
                     />
                 );
             })}

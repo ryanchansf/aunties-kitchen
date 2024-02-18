@@ -36,6 +36,8 @@ export function MealCard({
     session,
     price,
     count,
+    setReload,
+    reload,
 }: any) {
     const [isAlreadySubscribed, setIsAlreadySubscribed] =
         useState<boolean>(false); // Using 'any' type for meals
@@ -66,6 +68,8 @@ export function MealCard({
                 variant: "default",
                 duration: 2000,
             });
+
+            setReload(!reload);
 
             return response.json();
         } catch (error) {

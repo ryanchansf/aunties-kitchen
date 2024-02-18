@@ -171,6 +171,7 @@ import AuntieMealsList from "./AuntieMealsList";
 import connectDB from "@/database/db";
 import Student from "@/database/studentSchema";
 import Auntie from "@/database/auntieSchema";
+import AuntieDashboard from "./AuntieDashboard";
 
 export const metadata = {
     title: "Dashboard | Auntie",
@@ -196,16 +197,8 @@ export default async function DashboardAuntie() {
     }
 
     return (
-        <div className="flex flex-col gap-4 pt-24 px-28">
-            <div className="grid grid-cols-3 w-full items-center justify-center">
-                <h1 className="text-2xl font-semibold  p-4">Upcoming Meals</h1>
-
-                <h1 className="flex flex-col w-full items-center justify-center">
-                    <AddMeal />
-                </h1>
-                <h1 className="text-2xl font-semibold  p-4"></h1>
-            </div>
-            <AuntieMealsList session={session} />
-        </div>
+        <>
+            <AuntieDashboard session={session} />
+        </>
     );
 }
