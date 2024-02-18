@@ -71,7 +71,7 @@ return (
                 <DialogTitle>Add Meal</DialogTitle>
                 <DialogDescription>
                     Add new meals for students to enjoy! Click
-                    Add Meal when you're done.
+                    Add Meal when you&apos;re done.
                 </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4 py-4">

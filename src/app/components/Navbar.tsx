@@ -22,7 +22,7 @@ const Navbar = async () => {
               className="rounded-lg"
             />
             <p className="font-outfit ml-1 md:text-3xl text-2xl transition-all md:block dark:text-white1">
-              <span className="md:text-3xl text-[18px]">Auntie's Kitchen</span>
+              <span className="md:text-3xl text-[18px]">Auntie&apos;s Kitchen</span>
             </p>
           </Link>
         </div>
