@@ -153,8 +153,7 @@ export function MealCard({
                     </div>
 
                     <p className="absolute right-2 bottom-2 text-xs">
-                        {" "}
-                        Sign-ups: 2 / 3
+                        Sign Ups: {count}/3
                     </p>
                 </Card>
             </DialogTrigger>

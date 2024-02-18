@@ -19,10 +19,10 @@ import {
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { MealCard } from "../components/MealCard";
+import { MealCard } from "../components/mealCardAuntie";
 
 type Props = {
-    session : any
+    session: any;
 };
 const AuntieMealsList = (props: Props) => {
     const [meals, setMeals] = useState<any[]>([]); // Using 'any' type for meals
@@ -49,24 +49,24 @@ const AuntieMealsList = (props: Props) => {
 
     function formatDateString(isoString: Date) {
         const date = new Date(isoString);
-    
+
         const options: Intl.DateTimeFormatOptions = {
-          weekday: "long", // 'long', 'short', 'narrow'
-          hour: "numeric", // 'numeric', '2-digit'
-          minute: "numeric", // 'numeric', '2-digit'
-          hour12: true,
+            weekday: "long", // 'long', 'short', 'narrow'
+            hour: "numeric", // 'numeric', '2-digit'
+            minute: "numeric", // 'numeric', '2-digit'
+            hour12: true,
         };
-    
+
         // The 'en-US' locale is used as an example; you can adjust it to your needs
         return new Intl.DateTimeFormat("en-US", options).format(date);
-      }
-    
-      function formatPrice(price: number) {
+    }
+
+    function formatPrice(price: number) {
         return new Intl.NumberFormat("en-US", {
-          style: "currency",
-          currency: "USD",
+            style: "currency",
+            currency: "USD",
         }).format(price);
-      }
+    }
 
     return (
         <div className="grid grid-cols-4 gap-4">
@@ -80,6 +80,7 @@ const AuntieMealsList = (props: Props) => {
                         capacity={meal.capacity}
                         description={meal.description}
                         imgSrc={meal.imageSrc}
+                        count={meal.count}
                         key={id}
                         mealId={meal._id}
                     />

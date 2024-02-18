@@ -196,12 +196,12 @@ export default async function DashboardAuntie() {
     }
 
     return (
-        <div className="flex flex-col gap-4 pt-20 px-28">
+        <div className="flex flex-col gap-4 pt-24 px-28">
             <div className="grid grid-cols-3 w-full items-center justify-center">
                 <h1 className="text-2xl font-semibold  p-4">Upcoming Meals</h1>
 
                 <h1 className="flex flex-col w-full items-center justify-center">
-                   <AddMeal /> 
+                    <AddMeal />
                 </h1>
                 <h1 className="text-2xl font-semibold  p-4"></h1>
             </div>
