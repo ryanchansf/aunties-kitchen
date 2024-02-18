@@ -64,7 +64,7 @@ return (
     <div >
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-            <Button variant="outline">Add Meal</Button>
+            <Button variant="brown">Add Meal</Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
@@ -174,7 +174,7 @@ return (
             </div>
             <DialogTrigger asChild>
             <DialogFooter>
-              <Button type="submit" onClick={handleAddMeal}>Add Meal</Button>
+              <Button type="submit" onClick={handleAddMeal} variant="brown">Add Meal</Button>
             </DialogFooter>
             
 

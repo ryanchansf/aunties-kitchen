@@ -81,6 +81,14 @@ export function MealCard({
                 },
                 body: JSON.stringify({ mealId, userEmail: session.user.email }),
             };
+            if (count >= 3) {
+                toast({
+                    title: "Sorry this meal is full!",
+                    variant: "default",
+                    duration: 2000,
+                });
+                return;
+            }
 
             const response = await fetch("/api/meal/subscribe", requestOptions);
 
@@ -88,10 +96,14 @@ export function MealCard({
                 throw new Error("Failed to fetch meals");
             }
 
-            setIsAlreadySubscribed(true);
+            setIsAlreadySubscribed(!isAlreadySubscribed);
+
+            const toastTitle = isAlreadySubscribed
+                ? "Your order has been cancelled!"
+                : "Your order has been placed!";
 
             toast({
-                title: "Your order has been placed!",
+                title: toastTitle,
                 variant: "default",
                 duration: 2000,
             });
@@ -153,16 +165,28 @@ export function MealCard({
                     </div>
 
                     <p className="absolute right-2 bottom-2 text-xs">
-                        Sign Ups: {count}/3
+                        {" "}
+                        Sign-ups: {count} / {capacity}
                     </p>
                 </Card>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[350px] h-[150px]">
-                <DialogHeader>
-                    <DialogTitle>Do you want to place your order?</DialogTitle>
-                    <DialogDescription></DialogDescription>
-                </DialogHeader>
-
+                {isAlreadySubscribed ? (
+                    <DialogHeader>
+                        <DialogTitle>
+                            You have already placed an order for this meal.
+                            Would you like to unsubscribe?
+                        </DialogTitle>
+                        <DialogDescription></DialogDescription>
+                    </DialogHeader>
+                ) : (
+                    <DialogHeader>
+                        <DialogTitle>
+                            Do you want to place your order?
+                        </DialogTitle>
+                        <DialogDescription></DialogDescription>
+                    </DialogHeader>
+                )}
                 <DialogFooter className="flex mr-6">
                     <DialogClose>
                         <Button className="w-16 m-0" variant="outline">
@@ -173,7 +197,7 @@ export function MealCard({
                     <DialogClose>
                         <Button
                             className="w-16 rounded"
-                            onClick={() => subscribeToMeal()}
+                            onClick={subscribeToMeal}
                         >
                             Yes
                         </Button>
