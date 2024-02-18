@@ -1,17 +1,10 @@
 import { MealCard } from "../components/MealCard";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
-import { notFound } from "next/navigation";
 import StudentMealList from "../components/StudentMealList";
 import Image from "next/image";
-
-async function getData() {
-  const res = await fetch("http://localhost:3000/api/meal", {
-    method: "GET", // Explicitly stating that this is a GET request
-  });
-  if (!res.ok) return notFound();
-  return res.json();
-}
+import connectDB from "@/database/db";
+import Auntie from "@/database/auntieSchema";
 
 export const metadata = {
   title: "Dashboard | Auntie",
@@ -19,43 +12,31 @@ export const metadata = {
 
 export default async function StudentsView() {
   const session = await getServerSession();
-  const { meals } = await getData();
 
   if (!session || !session.user) {
     redirect("/login");
   }
 
-  function formatDateString(isoString: Date) {
-    const date = new Date(isoString);
+  await connectDB();
 
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long", // 'long', 'short', 'narrow'
-      hour: "numeric", // 'numeric', '2-digit'
-      minute: "numeric", // 'numeric', '2-digit'
-      hour12: true,
-    };
+  const email = session.user.email;
 
-    // The 'en-US' locale is used as an example; you can adjust it to your needs
-    return new Intl.DateTimeFormat("en-US", options).format(date);
+  const auntie = await Auntie.findOne({ email });
+
+  // completed onboarding process
+  if (auntie) {
+    redirect("/dashboard-auntie");
   }
 
-  function formatPrice(price: number) {
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(price);
+  if (!session || !session.user) {
+    redirect("/login");
   }
 
   return (
     <div className="flex flex-col gap-4 pt-20 px-28">
       <div className="flex flex-row gap-2">
         <div className="flex flex-col items-center justify-center">
-          <Image
-            src={""}
-            alt={""}
-            height={100}
-            width={100}
-          />
+          <Image src={""} alt={""} height={100} width={100} />
           <h1>Korean</h1>
         </div>
       </div>
