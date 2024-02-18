@@ -89,7 +89,7 @@ const AuntieMealsList = ({ session, reload, setReload }: Props) => {
                         price={formatPrice(meal.price)}
                         capacity={meal.capacity}
                         description={meal.description}
-                        imgSrc={meal.imageSrc}
+                        imgSrc={meal.imageSrc ? meal.imageSrc : '/auntie-cooking.jpg'}
                         count={meal.count}
                         key={id}
                         mealId={meal._id}
