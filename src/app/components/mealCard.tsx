@@ -25,6 +25,7 @@ export function MealCard({
     studentIds,
     imgSrc,
     capacity,
+    mealCount,
     session,
     price,
 }: any) {
@@ -153,7 +154,7 @@ export function MealCard({
 
                     <p className="absolute right-2 bottom-2 text-xs">
                         {" "}
-                        Sign-ups: {} / 3
+                        Sign-ups: {mealCount} / 3
                     </p>
                 </Card>
             </DialogTrigger>
