@@ -16,6 +16,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 import { DialogTrigger } from "@/components/ui/dialog";
@@ -187,8 +188,13 @@ export function MealCard({
         </DialogHeader>
 
         <DialogFooter>
-          <Button onClick={removeMeal}>Yes</Button>
-          <Button>No</Button>
+            <DialogClose>
+                <Button onClick={removeMeal} variant="brown">Yes</Button>
+            </DialogClose>
+
+            <DialogClose>
+                <Button variant="outline">No</Button>
+            </DialogClose>
         </DialogFooter>
       </DialogContent>
     </Dialog>
