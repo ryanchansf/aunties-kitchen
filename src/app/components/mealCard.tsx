@@ -116,7 +116,7 @@ export function MealCard({
         <Card
           className={`${
             isAlreadySubscribed && "border-8 border-green-500"
-          } rounded-tl-2xl rounded-tr-2xl overflow-hidden h-4/6 relative transition-all duration-300 ease-in-out hover:shadow-lg hover:cursor-pointer`}
+          } rounded-tl-2xl rounded-tr-2xl overflow-hidden h-4/6 relative transition-all duration-300 ease-in-out hover:shadow-lg hover:cursor-pointer hover:scale-105`}
         >
           <img
             src={imgSrc}
