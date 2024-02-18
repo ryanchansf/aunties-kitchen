@@ -67,7 +67,6 @@ export function MealCard({
     checkIfMealSubscribed();
   }, []);
 
-
   const handleSubscribeUnsubscribe = async () => {
     const action = isAlreadySubscribed ? "unsubscribe" : "subscribe";
     try {
@@ -145,7 +144,10 @@ export function MealCard({
             })}
           </div>
 
-          <p className="absolute right-2 bottom-2 text-xs"> Sign-ups: {count} / {capacity}</p>
+          <p className="absolute right-2 bottom-2 text-xs">
+            {" "}
+            Sign-ups: {count} / {capacity}
+          </p>
         </Card>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[350px] h-[150px]">
