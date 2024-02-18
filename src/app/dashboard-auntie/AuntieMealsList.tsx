@@ -31,6 +31,7 @@ const AuntieMealsList = (props: Props) => {
         // Fetch meals when the component mounts
         fetchMeals()
             .then((fetchedMeals) => setMeals(fetchedMeals.meals))
+            .then(() => console.log(meals))
             .catch((error) => console.error("Failed to fetch meals:", error));
     }, []); // Empty dependency array to run the effect only once
 

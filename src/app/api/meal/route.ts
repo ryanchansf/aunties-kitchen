@@ -9,6 +9,7 @@ export async function POST(req: Request) {
       await req.json();
 
     const studentIds: string[] = [];
+    console.log( name, description, school, meetTime, capacity, price );
 
     await connectDB();
     await Meal.create({ name, description, school, meetTime, studentIds, capacity, price});
