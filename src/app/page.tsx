@@ -11,6 +11,33 @@ import {
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
+  const accordionItems = [
+    {
+      value: "item-1",
+      title: "Authentic Homemade Meals",
+      content:
+        "Enjoy delicious homemade meals cooked with love and care by experienced aunties.",
+    },
+    {
+      value: "item-2",
+      title: "Convenience",
+      content:
+        "No need to worry about cooking with Auntie's Kitchen. Just place your order and enjoy!",
+    },
+    {
+      value: "item-3",
+      title: "Variety",
+      content:
+        "Explore a wide range of cuisines and dishes offered by our talented aunties.",
+    },
+    {
+      value: "item-4",
+      title: "Affordable",
+      content:
+        "Delicious meals at affordable prices, perfect for students on a budget.",
+    },
+  ];
+
   return (
     <main className="flex flex-col items-center justify-center min-h-screen p-8">
       <div className="text-center mb-8">
@@ -37,48 +64,15 @@ export default function Home() {
             Why Choose Auntie's Kitchen?
           </h2>
           <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="flex items-center">
-                <CheckIcon className="w-6 h-6" />
-                Authentic Homemade Meals
-              </AccordionTrigger>
-              <AccordionContent>
-                Enjoy delicious homemade meals cooked with love and care by
-                experienced aunties.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger>
-                <CheckIcon className="w-6 h-6" />
-                Convenience
-              </AccordionTrigger>
-              <AccordionContent className="flex flex-wrap items-end justify-end">
-                {/* <p className="max-w-[80%] overflow-wrap break-word"> */}
-                No need to worry about cooking when you have Auntie's Kitchen.
-                Just place your order and enjoy!
-                {/* </p> */}
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger>
-                <CheckIcon className="w-6 h-6" />
-                Variety
-              </AccordionTrigger>
-              <AccordionContent>
-                Explore a wide range of cuisines and dishes offered by our
-                talented aunties.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-4">
-              <AccordionTrigger>
-                <CheckIcon className="w-6 h-6" />
-                Affordable
-              </AccordionTrigger>
-              <AccordionContent>
-                Delicious meals at affordable prices, perfect for students on a
-                budget.
-              </AccordionContent>
-            </AccordionItem>
+            {accordionItems.map((item) => (
+              <AccordionItem key={item.value} value={item.value}>
+                <AccordionTrigger className="flex items-center">
+                  <CheckIcon className="w-6 h-6" />
+                  {item.title}
+                </AccordionTrigger>
+                <AccordionContent>{item.content}</AccordionContent>
+              </AccordionItem>
+            ))}
           </Accordion>
 
           <Button asChild className="mt-4">
