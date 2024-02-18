@@ -1,6 +1,9 @@
 import { MealCard } from "../components/mealCard";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import connectDB from "@/database/db";
+import Student from "@/database/studentSchema";
+import Auntie from "@/database/auntieSchema";
 
 export const metadata = {
     title: "Dashboard | Auntie",
@@ -12,6 +15,18 @@ export default async function StudentsView() {
     if (!session || !session.user) {
         redirect("/login");
     }
+
+    await connectDB();
+
+    const email = session.user.email;
+
+    const auntie = await Auntie.findOne({ email });
+
+    // completed onboarding process
+    if (auntie) {
+        redirect("/dashboard-auntie");
+    }
+
     const meals = [
         {
             name: "Porota Manksho",

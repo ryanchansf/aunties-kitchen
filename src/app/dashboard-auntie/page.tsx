@@ -168,6 +168,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import AuntieMealsList from "./AuntieMealsList";
+import connectDB from "@/database/db";
+import Student from "@/database/studentSchema";
+import Auntie from "@/database/auntieSchema";
 
 export const metadata = {
     title: "Dashboard | Auntie",
@@ -178,6 +181,18 @@ export default async function DashboardAuntie() {
 
     if (!session || !session.user) {
         redirect("/login");
+    }
+
+    await connectDB();
+
+    const email = session.user.email;
+
+    const auntie = await Auntie.findOne({ email });
+    const student = await Student.findOne({ email });
+
+    // completed onboarding process
+    if (student) {
+        redirect("/dashboard-student");
     }
 
     return (
