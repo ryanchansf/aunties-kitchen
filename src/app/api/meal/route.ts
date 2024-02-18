@@ -9,10 +9,20 @@ export async function POST(req: Request) {
       await req.json();
 
     const studentIds: string[] = [];
-    console.log( name, description, school, meetTime, capacity, price );
+    const count = 0;
+    console.log(name, description, school, meetTime, capacity, price, count);
 
     await connectDB();
-    await Meal.create({ name, description, school, meetTime, studentIds, capacity, price});
+    await Meal.create({
+      name,
+      description,
+      school,
+      meetTime,
+      studentIds,
+      capacity,
+      price,
+      count,
+    });
 
     return NextResponse.json({ message: "Meal created." }, { status: 201 });
   } catch (error) {
@@ -39,14 +49,17 @@ export async function GET(req: Request) {
 export async function DELETE(req: NextApiRequest) {
   try {
     // Parse the URL to get the id query parameter
-    const url = new URL(req.url ? req.url: "invalid");
-    const id = url.searchParams.get('id');
+    const url = new URL(req.url ? req.url : "invalid");
+    const id = url.searchParams.get("id");
 
     // Delete the meal with the provided ID from the database
     await Meal.deleteOne({ _id: id });
 
     // Return a success message
-    return NextResponse.json({ message: "Meal deleted successfully." }, { status: 200 });
+    return NextResponse.json(
+      { message: "Meal deleted successfully." },
+      { status: 200 }
+    );
   } catch (error) {
     // Return an error message if deletion fails
     return NextResponse.json(

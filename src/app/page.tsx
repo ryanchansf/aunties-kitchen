@@ -75,7 +75,7 @@ export default function Home() {
             ))}
           </Accordion>
 
-          <Button asChild className="mt-4">
+          <Button asChild className="mt-4" variant="brown">
             <Link href="/login">Get Started</Link>
           </Button>
         </div>
