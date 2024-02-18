@@ -40,7 +40,7 @@ export default async function StudentsView() {
           <h1>Korean</h1>
         </div>
       </div>
-      <h1 className="text-2xl font-semibold   p-4 pb-2">This Weeks Meals</h1>
+      <h1 className="text-2xl font-semibold p-4 pb-2">This Weeks Meals</h1>
       <div className="grid grid-cols-4 gap-4">
         <StudentMealList session={session} />
       </div>
