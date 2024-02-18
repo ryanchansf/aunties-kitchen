@@ -8,6 +8,7 @@ type Props = { text: string };
 const SignInButton = ({ text }: Props) => {
     return (
         <Button
+        variant="brown"
             onClick={() => {
                 signIn("google", { callbackUrl: "/onboard" }).catch(
                     console.error

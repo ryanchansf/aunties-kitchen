@@ -197,6 +197,7 @@ export function MealCard({
                     <DialogClose>
                         <Button
                             className="w-16 rounded"
+                            variant="brown"
                             onClick={subscribeToMeal}
                         >
                             Yes
