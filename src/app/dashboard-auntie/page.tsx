@@ -152,7 +152,6 @@
 // export default Dashboard;
 
 import AddMeal from "./AddMeal";
-import { MealCard } from "../components/mealCard";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import MealsList from "./AuntieMealsList";
