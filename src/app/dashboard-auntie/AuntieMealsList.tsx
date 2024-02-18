@@ -19,8 +19,11 @@ import {
 } from "@/components/ui/select";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { MealCard } from "../components/MealCard";
 
-type Props = {};
+type Props = {
+    session : any
+};
 const AuntieMealsList = (props: Props) => {
     const [meals, setMeals] = useState<any[]>([]); // Using 'any' type for meals
 
@@ -44,23 +47,42 @@ const AuntieMealsList = (props: Props) => {
         }
     };
 
+    function formatDateString(isoString: Date) {
+        const date = new Date(isoString);
+    
+        const options: Intl.DateTimeFormatOptions = {
+          weekday: "long", // 'long', 'short', 'narrow'
+          hour: "numeric", // 'numeric', '2-digit'
+          minute: "numeric", // 'numeric', '2-digit'
+          hour12: true,
+        };
+    
+        // The 'en-US' locale is used as an example; you can adjust it to your needs
+        return new Intl.DateTimeFormat("en-US", options).format(date);
+      }
+    
+      function formatPrice(price: number) {
+        return new Intl.NumberFormat("en-US", {
+          style: "currency",
+          currency: "USD",
+        }).format(price);
+      }
+
     return (
-        <div className="flex flex-row gap-3">
+        <div className="grid grid-cols-4 gap-4">
             {meals.map((meal, id) => {
                 return (
-                    <Card key={id} className="w-[350px]">
-                        <CardHeader>
-                            <CardTitle>{meal.name}</CardTitle>
-                            <CardDescription>
-                                {meal.description}
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <div>Location: {meal.school}</div>
-                            <div>Time: {meal.meetTime}</div>
-                        </CardContent>
-                        <CardFooter className="flex justify-between"></CardFooter>
-                    </Card>
+                    <MealCard
+                        name={meal.name}
+                        school={meal.school}
+                        meetTime={formatDateString(meal.meetTime)}
+                        price={formatPrice(meal.price)}
+                        capacity={meal.capacity}
+                        description={meal.description}
+                        imgSrc={meal.imageSrc}
+                        key={id}
+                        mealId={meal._id}
+                    />
                 );
             })}
         </div>

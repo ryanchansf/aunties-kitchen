@@ -169,6 +169,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import AuntieMealsList from "./AuntieMealsList";
+import connectDB from "@/database/db";
+import Student from "@/database/studentSchema";
+import Auntie from "@/database/auntieSchema";
 
 export const metadata = {
     title: "Dashboard | Auntie",
@@ -181,7 +184,18 @@ export default async function DashboardAuntie() {
         redirect("/login");
     }
 
-    
+    await connectDB();
+
+    const email = session.user.email;
+
+    const auntie = await Auntie.findOne({ email });
+    const student = await Student.findOne({ email });
+
+    // completed onboarding process
+    if (student) {
+        redirect("/dashboard-student");
+    }
+
     return (
         <div className="flex flex-col gap-4 pt-20 px-28">
             <div className="grid grid-cols-3 w-full items-center justify-center">
@@ -191,7 +205,7 @@ export default async function DashboardAuntie() {
                 </h1>
                 <h1 className="text-2xl font-semibold  p-4"></h1>
             </div>
-            <AuntieMealsList />
+            <AuntieMealsList session={session} />
         </div>
     );
 }

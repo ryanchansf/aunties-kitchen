@@ -1,76 +1,49 @@
-import { MealCard } from "../components/mealCard";
+import { MealCard } from "../components/MealCard";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
+import StudentMealList from "../components/StudentMealList";
+import Image from "next/image";
+import connectDB from "@/database/db";
+import Auntie from "@/database/auntieSchema";
 
 export const metadata = {
-    title: "Dashboard | Auntie",
+  title: "Dashboard | Auntie",
 };
 
 export default async function StudentsView() {
-    const session = await getServerSession();
+  const session = await getServerSession();
 
-    if (!session || !session.user) {
-        redirect("/login");
-    }
-    const meals = [
-        {
-            name: "Porota Manksho",
-            description:
-                "an authentic bengali chicken that is made with lots of love!",
-            school: "Standford",
-            meetTime: "6:00pm",
-            capacity: "2/3 students",
-            imgSrc: "/manksho.jpeg",
-        },
-        {
-            name: "Porota Manksho",
-            school: "Standford",
-            meetTime: "6:00pm",
-            description:
-                "an authentic bengali chicken that is made with lots of love!",
-            capacity: "2/3 students",
-            imgSrc: "/manksho.jpeg",
-        },
-        {
-            name: "Porota Manksho",
-            school: "Standford",
-            meetTime: "6:00pm",
-            description:
-                "an authentic bengali chicken that is made with lots of love!",
-            capacity: "2/3 students",
-            imgSrc: "/manksho.jpeg",
-        },
-        {
-            name: "Porota Manksho",
-            school: "Standford",
-            meetTime: "6:00pm",
-            capacity: "2/3 students",
-            description:
-                "an authentic bengali chicken that is made with lots of love!",
-            imgSrc: "/manksho.jpeg",
-        },
-    ];
+  if (!session || !session.user) {
+    redirect("/login");
+  }
 
-    return (
-        <div className="flex flex-col gap-4 pt-20 px-28">
-            <h1 className="text-4xl self-center p-4">Upcoming Meals</h1>
+  await connectDB();
 
-            <div className="grid grid-cols-4 gap-4">
-                {meals.map((meal, index) => {
-                    return (
-                        <MealCard
-                            name={meal.name}
-                            school={meal.school}
-                            meetTime={meal.meetTime}
-                            capacity={meal.capacity}
-                            description={meal.description}
-                            imgSrc={meal.imgSrc}
-                            key={index}
-                            price="$30"
-                        />
-                    );
-                })}
-            </div>
+  const email = session.user.email;
+
+  const auntie = await Auntie.findOne({ email });
+
+  // completed onboarding process
+  if (auntie) {
+    redirect("/dashboard-auntie");
+  }
+
+  if (!session || !session.user) {
+    redirect("/login");
+  }
+
+  return (
+    <div className="flex flex-col gap-4 pt-20 px-28">
+      <div className="flex flex-row gap-2">
+        <div className="flex flex-col items-center justify-center">
+          <Image src={""} alt={""} height={100} width={100} />
+          <h1>Korean</h1>
         </div>
-    );
+      </div>
+      <h1 className="text-2xl font-semibold   p-4 pb-2">This Weeks Meals</h1>
+      <div className="grid grid-cols-4 gap-4">
+        <StudentMealList session={session} />
+      </div>
+    </div>
+  );
 }
