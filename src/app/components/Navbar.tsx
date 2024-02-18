@@ -13,7 +13,7 @@ const Navbar = async () => {
     <div className="fixed inset-x-0 top-0  bg-white dark:bg-gray-950 z-[10] h-fit border-b border-zinc-300  py-3 md:pb-3 pb-7">
       <div className="flex items-center justify-between h-full gap-2 md:px-8 px-3 mx-auto max-w-7xl pt-2 md:pt-0">
         {/* Logo */}
-        <div className="flex items-center">
+        <div className="flex items-center hover:-translate-y-[2px]">
           <Image
             src="/auntie-logo.png"
             alt="Auntie Logo"
@@ -22,7 +22,7 @@ const Navbar = async () => {
             className="rounded-lg"
           />
           <Link href={"/"} className="flex items-center flex-row">
-            <p className="font-outfit ml-1 md:text-3xl text-2xl transition-all hover:-translate-y-[2px] md:block dark:text-white1">
+            <p className="font-outfit ml-1 md:text-3xl text-2xl transition-all md:block dark:text-white1">
               <span className="md:text-3xl text-[18px]">Auntie's Kitchen</span>
             </p>
           </Link>
