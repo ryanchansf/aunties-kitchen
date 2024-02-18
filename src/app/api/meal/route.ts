@@ -38,7 +38,7 @@ export async function GET(req: Request) {
 export async function DELETE(req: NextApiRequest) {
   try {
     // Parse the URL to get the id query parameter
-    const url = new URL(req.url);
+    const url = new URL(req.url ? req.url: "invalid");
     const id = url.searchParams.get('id');
 
     // Delete the meal with the provided ID from the database
