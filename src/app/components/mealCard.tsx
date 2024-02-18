@@ -197,7 +197,7 @@ export function MealCard({
                     <DialogClose>
                         <Button
                             className="w-16 rounded"
-                            onClick={() => handleSubscribeUnsubscribe()}
+                            onClick={subscribeToMeal}
                         >
                             Yes
                         </Button>
