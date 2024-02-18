@@ -28,31 +28,29 @@ const Navbar = async () => {
           </Link>
         </div>
 
-          <div className="flex items-center ">
-            {session?.user ? (
-              <>
-                <UserAccountNav user={session.user} />
-                <div className="md:block hidden ml-3 border-l-2 pl-3">
-                  <h1 className="text-lg font-semibold ">
-                    {session.user.name}
-                  </h1>
-                </div>
-              </>
-            ) : (
-              <div className="flex flex-row items-center text-center text-sm md:text-base justify-center space-x-2 md:space-x-6 font-outfit">
-                <Link href={"/contact"}>
-                  <p>Contact</p>
-                </Link>
-                <Link href={"/demo"}>
-                  <p>Book Demo</p>
-                </Link>
-
-                <SignInButton text={"Sign In"} />
+        <div className="flex items-center ">
+          {session?.user ? (
+            <>
+              <UserAccountNav user={session.user} />
+              <div className="md:block hidden ml-3 border-l-2 pl-3">
+                <h1 className="text-lg font-semibold ">{session.user.name}</h1>
               </div>
-            )}
-          </div>
+            </>
+          ) : (
+            <div className="flex flex-row items-center text-center text-sm md:text-base justify-center space-x-2 md:space-x-6 font-outfit">
+              <Link href={"/contact"}>
+                <p>Contact</p>
+              </Link>
+              <Link href={"/demo"}>
+                <p>Book Demo</p>
+              </Link>
+
+              <SignInButton text={"Sign In"} />
+            </div>
+          )}
         </div>
       </div>
+    </div>
   );
 };
 
