@@ -1,8 +1,14 @@
+"use-client";
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { useToast } from "@/components/ui/use-toast";
+import { ConfirmationModal } from "./ConfirmationModal";
 
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -10,10 +16,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogClose,
 } from "@/components/ui/dialog";
 
 import { DialogTrigger } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export function MealCard({
@@ -30,8 +37,6 @@ export function MealCard({
 }: any) {
   const [isAlreadySubscribed, setIsAlreadySubscribed] =
     useState<boolean>(false); // Using 'any' type for meals
-
-  const { toast } = useToast();
 
   useEffect(() => {
     const checkIfMealSubscribed = async () => {
@@ -82,14 +87,6 @@ export function MealCard({
         throw new Error("Failed to fetch meals");
       }
 
-      setIsAlreadySubscribed(true);
-
-      toast({
-        title: "Your order has been placed!",
-        variant: "default",
-        duration: 2000,
-      });
-
       return response.json();
     } catch (error) {
       throw new Error(`An error occurred while fetching meals: ${error}`);
@@ -110,13 +107,13 @@ export function MealCard({
       attribute: price,
     },
   ];
+
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Card
-          className={`${
-            isAlreadySubscribed && "border-8 border-green-500"
-          } rounded-tl-2xl rounded-tr-2xl overflow-hidden h-4/6 relative transition-all duration-300 ease-in-out hover:shadow-lg hover:cursor-pointer`}
+          onClick={() => subscribeToMeal()}
+          className="rounded-tl-2xl rounded-tr-2xl overflow-hidden h-4/6 relative transition-all duration-300 ease-in-out hover:shadow-lg hover:cursor-pointer"
         >
           <img
             src={imgSrc}
@@ -135,28 +132,22 @@ export function MealCard({
               );
             })}
           </div>
+          {isAlreadySubscribed && <p>Is Subscribed!!</p>}
+          <DialogTrigger>Bruh</DialogTrigger>
+          <ConfirmationModal />
 
-          <p className="absolute right-2 bottom-2 text-xs"> Sign-ups: {} / 3</p>
+          <p className="absolute right-2 bottom-2 text-xs"> Sign-ups: 2 / 3</p>
         </Card>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[350px] h-[150px]">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Do you want to place your order?</DialogTitle>
           <DialogDescription></DialogDescription>
         </DialogHeader>
 
-        <DialogFooter className="flex mr-6">
-          <DialogClose>
-            <Button className="w-16 m-0" variant="outline">
-              No
-            </Button>
-          </DialogClose>
-
-          <DialogClose>
-            <Button className="w-16 rounded" onClick={() => subscribeToMeal()}>
-              Yes
-            </Button>
-          </DialogClose>
+        <DialogFooter>
+          <Button>Yes</Button>
+          <Button>No</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

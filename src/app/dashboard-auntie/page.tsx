@@ -151,7 +151,7 @@
 
 // export default Dashboard;
 
-import { MealCard } from "../components/mealCard";
+import { MealCard } from "../components/MealCard";
 import { redirect } from "next/navigation";
 import { getServerSession } from "next-auth";
 import MealsList from "./AuntieMealsList";
@@ -199,6 +199,7 @@ export default async function DashboardAuntie() {
         <div className="flex flex-col gap-4 pt-20 px-28">
             <div className="grid grid-cols-3 w-full items-center justify-center">
                 <h1 className="text-2xl font-semibold  p-4">Upcoming Meals</h1>
+
                 <h1 className="flex flex-col w-full items-center justify-center">
                     <Dialog>
                         <DialogTrigger asChild>
@@ -248,7 +249,7 @@ export default async function DashboardAuntie() {
                 </h1>
                 <h1 className="text-2xl font-semibold  p-4"></h1>
             </div>
-            <AuntieMealsList />
+            <AuntieMealsList session={session} />
         </div>
     );
 }
