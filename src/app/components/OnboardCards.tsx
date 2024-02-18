@@ -95,13 +95,13 @@ const OnboardCards = ({ name, email }: Props) => {
                         <div className="flex flex-row w-full items-center justify-center gap-1">
                             <Button
                                 onClick={() => setIsStudent(true)}
-                                variant={isStudent ? "default" : "outline"}
+                                variant={isStudent ? "brown" : "outline"}
                             >
                                 Here to eat! (Student)
                             </Button>
                             <Button
                                 onClick={() => setIsStudent(false)}
-                                variant={!isStudent ? "default" : "outline"}
+                                variant={!isStudent ? "brown" : "outline"}
                             >
                                 Making the food! (Auntie)
                             </Button>
@@ -113,7 +113,7 @@ const OnboardCards = ({ name, email }: Props) => {
                                 onClick={() => {
                                     setCurrStep(currStep - 1);
                                 }}
-                                variant="outline"
+                                variant="brown"
                             >
                                 Back
                             </Button>
@@ -124,6 +124,7 @@ const OnboardCards = ({ name, email }: Props) => {
                             onClick={() => {
                                 setCurrStep(currStep + 1);
                             }}
+                            variant="brown"
                         >
                             Next
                         </Button>
@@ -180,7 +181,7 @@ const OnboardCards = ({ name, email }: Props) => {
                         ) : (
                             <div></div>
                         )}
-                        <Button onClick={handleStudentRegistration}>
+                        <Button onClick={handleStudentRegistration} variant="brown">
                             Submit
                         </Button>
                     </CardFooter>
@@ -230,7 +231,7 @@ const OnboardCards = ({ name, email }: Props) => {
                         ) : (
                             <div></div>
                         )}
-                        <Button onClick={handleAuntieRegistration}>
+                        <Button onClick={handleAuntieRegistration} variant="brown">
                             Submit
                         </Button>
                     </CardFooter>

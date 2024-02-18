@@ -39,10 +39,10 @@ const Onboard = async (props: Props) => {
             <div className="flex w-full items-center justify-center text-center mt-12">
                 <div className="flex flex-col gap-1">
                     <h2 className="mr-2 text-[28px] font-bold tracking-tight">
-                        Welcome to Auntie's Meals!
+                        Welcome to Auntie's Kitchen!
                     </h2>
                     <h1 className="text-zinc-500 mb-10 text-[15px] dark:text-zinc-300">
-                        Just a few more steps and you'll ready to go!
+                        Just a few more steps and you'll be ready to go!
                     </h1>
                     <OnboardCards
                         name={session.user.name!}
