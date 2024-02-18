@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-
 export function MealCard({name, description, school, meetTime, studentIds, imgSrc, capacity, price}: any)  {
 
   const descriptionItems = [

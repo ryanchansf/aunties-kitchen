@@ -28,6 +28,7 @@ const AuntieMealsList = (props: Props) => {
         // Fetch meals when the component mounts
         fetchMeals()
             .then((fetchedMeals) => setMeals(fetchedMeals.meals))
+            .then(() => console.log(meals))
             .catch((error) => console.error("Failed to fetch meals:", error));
     }, []); // Empty dependency array to run the effect only once
 
@@ -55,7 +56,7 @@ const AuntieMealsList = (props: Props) => {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div>Location: {meal.location}</div>
+                            <div>Location: {meal.school}</div>
                             <div>Time: {meal.meetTime}</div>
                         </CardContent>
                         <CardFooter className="flex justify-between"></CardFooter>
