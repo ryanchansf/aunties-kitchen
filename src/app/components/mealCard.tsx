@@ -81,6 +81,14 @@ export function MealCard({
                 },
                 body: JSON.stringify({ mealId, userEmail: session.user.email }),
             };
+            if (count >= 3) {
+                toast({
+                    title: "Sorry this meal is full!",
+                    variant: "default",
+                    duration: 2000,
+                });
+                return;
+            }
 
             const response = await fetch("/api/meal/subscribe", requestOptions);
 
