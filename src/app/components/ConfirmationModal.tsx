@@ -11,13 +11,11 @@ import {
 export function ConfirmationModal() {
   return (
     <Dialog>
-
-        
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Do you want to place your order?</DialogTitle>
           <DialogDescription>
-            Make changes to your profile here. Click save when you're done.
+            Make changes to your profile here. Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4"></div>

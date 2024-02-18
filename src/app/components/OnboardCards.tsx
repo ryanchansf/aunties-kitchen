@@ -139,7 +139,7 @@ const OnboardCards = ({ name, email }: Props) => {
                     <CardHeader>
                         <CardTitle>What school to you attend?</CardTitle>
                         <CardDescription className="text-sm font-light ">
-                            We'll connect you with homecooked meals near your
+                            We&apos;ll connect you with homecooked meals near your
                             school!
                         </CardDescription>
                     </CardHeader>
@@ -197,7 +197,7 @@ const OnboardCards = ({ name, email }: Props) => {
                             What cuisine do you specialize in?
                         </CardTitle>
                         <CardDescription className="text-sm font-light ">
-                            We'll connect you with students missing a taste of
+                            We&apos;ll connect you with students missing a taste of
                             their home
                         </CardDescription>
                     </CardHeader>

@@ -46,7 +46,7 @@ export async function GET(req: Request) {
   }
 }
 
-export async function DELETE(req: NextApiRequest) {
+export async function DELETE(req: Request) {
   try {
     // Parse the URL to get the id query parameter
     const url = new URL(req.url ? req.url : "invalid");

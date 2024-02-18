@@ -42,7 +42,7 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center min-h-screen p-8">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4">
-          Welcome to Auntie's Kitchen!
+          Welcome to Auntie&apos;s Kitchen!
         </h1>
         <p className="text-lg text-gray-600">
           Connecting students with experienced aunties who love to cook
@@ -61,7 +61,7 @@ export default function Home() {
         </div>
         <div className="flex flex-col justify-center">
           <h2 className="text-2xl font-semibold mb-4">
-            Why Choose Auntie's Kitchen?
+            Why Choose Auntie&apos;s Kitchen?
           </h2>
           <Accordion type="single" collapsible className="w-full">
             {accordionItems.map((item) => (
