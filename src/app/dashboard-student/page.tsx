@@ -63,7 +63,7 @@ export default async function StudentsView() {
                  hover:-translate-y-1 transition"
                 >
                     <Image
-                        src={"/foodPics/Samosa.png"}
+                        src={"/foodPics/samosa.png"}
                         alt={""}
                         height={45}
                         width={45}
