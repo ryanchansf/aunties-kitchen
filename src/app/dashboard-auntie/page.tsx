@@ -248,7 +248,7 @@ export default async function DashboardAuntie() {
                 </h1>
                 <h1 className="text-2xl font-semibold  p-4"></h1>
             </div>
-            <AuntieMealsList />
+            <AuntieMealsList session={session} />
         </div>
     );
 }
