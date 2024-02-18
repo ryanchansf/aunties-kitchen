@@ -49,7 +49,7 @@
 //       .catch(error => console.error('Failed to delete meal:', error));
 //   };
 
-//   const createMeal = async (mealData: Partial<any>) => {
+//   const :q = async (mealData: Partial<any>) => {
 //     try {
 //       const response = await fetch('/api/meal', {
 //         method: 'POST',
