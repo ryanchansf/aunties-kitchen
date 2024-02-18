@@ -1,5 +1,5 @@
 "use client";
-import { MealCard } from "./MealCard";
+import { MealCard } from "./mealCard";
 import { useState, useEffect } from "react";
 
 export const metadata = {
@@ -61,7 +61,7 @@ export default function StudentMealList({ session }: any) {
                         capacity={meal.capacity}
                         description={meal.description}
                         imgSrc={meal.imageSrc}
-                        mealCount={meal.count}
+                        count={meal.count}
                         key={index}
                         mealId={meal._id}
                         session={session}

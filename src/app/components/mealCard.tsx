@@ -25,9 +25,9 @@ export function MealCard({
     studentIds,
     imgSrc,
     capacity,
-    mealCount,
     session,
     price,
+    count,
 }: any) {
     const [isAlreadySubscribed, setIsAlreadySubscribed] =
         useState<boolean>(false); // Using 'any' type for meals
@@ -154,7 +154,7 @@ export function MealCard({
 
                     <p className="absolute right-2 bottom-2 text-xs">
                         {" "}
-                        Sign-ups: {mealCount} / 3
+                        Sign-ups: 2 / 3
                     </p>
                 </Card>
             </DialogTrigger>
